@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Text Redactor</title>
+</head>
+<body>
+  <h1>Text Redactor</h1>
+
+  <form method="post" action="/redact">
+    <p>
+      <label for="text">Text to redact</label><br>
+      <textarea id="text" name="text" rows="10" cols="60" required placeholder="Enter your text here..."></textarea>
+    </p>
+
+    <fieldset>
+      <legend>Entity types</legend>
+      <label><input type="checkbox" name="entity_types" value="email" __EMAIL_CHECKED__> Email addresses</label><br>
+      <label><input type="checkbox" name="entity_types" value="phone" __PHONE_CHECKED__> Phone numbers</label><br>
+      <label><input type="checkbox" name="entity_types" value="ssn" __SSN_CHECKED__> Social Security numbers</label><br>
+      <label><input type="checkbox" name="entity_types" value="card" __CARD_CHECKED__> Credit card numbers</label>
+    </fieldset>
+
+    <p><button type="submit">Redact text</button></p>
+  </form>
+
+  __RESULTS__
+</body>
+</html>
