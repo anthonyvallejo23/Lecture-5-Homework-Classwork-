@@ -10,20 +10,22 @@
   <form method="post" action="/redact">
     <p>
       <label for="text">Text to redact</label><br>
-      <textarea id="text" name="text" rows="10" cols="60" required placeholder="Enter your text here..."></textarea>
+      <textarea id="text" name="text" rows="10" cols="60" maxlength="10000" required placeholder="Enter your text here...">__INPUT_TEXT__</textarea>
     </p>
 
     <fieldset>
       <legend>Entity types</legend>
-      <label><input type="checkbox" name="entity_types" value="email" __EMAIL_CHECKED__> Email addresses</label><br>
-      <label><input type="checkbox" name="entity_types" value="phone" __PHONE_CHECKED__> Phone numbers</label><br>
-      <label><input type="checkbox" name="entity_types" value="ssn" __SSN_CHECKED__> Social Security numbers</label><br>
-      <label><input type="checkbox" name="entity_types" value="card" __CARD_CHECKED__> Credit card numbers</label>
+      <label><input type="checkbox" name="entity_types" value="PER" __PER_CHECKED__> People (PER)</label><br>
+      <label><input type="checkbox" name="entity_types" value="LOC" __LOC_CHECKED__> Locations (LOC)</label><br>
+      <label><input type="checkbox" name="entity_types" value="ORG" __ORG_CHECKED__> Organizations (ORG)</label><br>
+      <label><input type="checkbox" name="entity_types" value="MISC" __MISC_CHECKED__> Miscellaneous Names (MISC)</label>
     </fieldset>
 
     <p><button type="submit">Redact text</button></p>
   </form>
 
+  __ERROR__
+  
   __RESULTS__
 </body>
 </html>
