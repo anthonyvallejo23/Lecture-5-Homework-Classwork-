@@ -57,7 +57,7 @@ class FakeRedactor:
         yield test_client
 
 
- 1. Cover a successful redaction
+# 1. Cover a successful redaction
 def test_successful_redaction(client):
     payload = {
         "text": "I met Dr. Maria Lopez at Riverside Clinic in Denver. Email me at maria@example.com."
@@ -72,7 +72,7 @@ def test_successful_redaction(client):
     assert len(data["entities"]) == 4
 
 
- 2. Cover the email rule (Regex matches and extracts emails)
+# 2. Cover the email rule (Regex matches and extracts emails)
 def test_email_rule_redaction(client):
     payload = {"text": "Reach out via test@domain.com."}
     response = client.post("/api/redact", json=payload)
@@ -85,7 +85,6 @@ def test_email_rule_redaction(client):
 
 # 3. Cover the score threshold
 def test_score_threshold_enforcement(client):
-    # App-level config value must pull exactly from app layout settings
     assert client.application.config["SCORE_THRESHOLD"] == 0.80
     
     payload = {"text": "lowconfidence entity entry text mapping."}
@@ -93,11 +92,10 @@ def test_score_threshold_enforcement(client):
     assert response.status_code == 200
     
     data = response.get_json()
-    # Verify that the low score entity was dropped by checking that the entity list remains empty
     assert len(data["entities"]) == 0
 
 
- 4. Cover invalid types
+# 4. Cover invalid types
 def test_invalid_entity_types(client):
     payload = {
         "text": "Valid length string.",
@@ -110,20 +108,18 @@ def test_invalid_entity_types(client):
     assert "types must only be PER, LOC, ORG, or MISC" in data["error"]
 
 
- 5. Cover empty or too-long text
+# 5. Cover empty or too-long text
 def test_text_length_bounds(client):
-    # Test blank empty string handling
     response_empty = client.post("/api/redact", json={"text": ""})
     assert response_empty.status_code == 400
     assert "Text must be between 1 and 10000 characters" in response_empty.get_json()["error"]
 
-    # Test extreme over-capacity constraints
     response_long = client.post("/api/redact", json={"text": "X" * 10001})
     assert response_long.status_code == 400
     assert "Text must be between 1 and 10000 characters" in response_long.get_json()["error"]
 
 
- 6. Cover a JSON 404
+# 6. Cover a JSON 404
 def test_unknown_routes_return_json_404(client):
     response = client.get("/api/invalid-route-path")
     assert response.status_code == 404
