@@ -22,7 +22,7 @@ class Redactor:
             ner_pipeline = pipeline(
                 "ner",
                 model=MODEL_NAME,
-                aggregation_strat="simple"
+                aggregation_strategy="simple"
             )
 
         self.ner = ner_pipeline
