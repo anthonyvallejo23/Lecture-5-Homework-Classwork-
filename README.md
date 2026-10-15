@@ -1,1 +1,4 @@
+For the setup step, first is to initialize the appropriate environment (R and Python) and install all the necessary dependencies listed in requirements.txt; then launch the app.py service, the service utilizes port 5000. For client_example, the R scripts utilizes the httr2 library.
+
+LIMITATIONS:
 After we tried with different prompt examples, we found that certain names were not able to be identified by the model, such as abbreviations for organization. For example, the 'Federal Bureau of Investigation' came up as [ORG] but the 'FBI' did not. For [PER], formally formated names (with both upper case and lower case) were able to be identified by the API, however, if all in lower case, they were not redacted. Moreover, with locations, it only picked up the last section, for example, for 'Denver, CO', the [LOC] only displayed CO instead of the entire city, state location.
