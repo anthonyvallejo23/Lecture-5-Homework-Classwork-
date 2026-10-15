@@ -1,3 +1,1 @@
-TODO
-
-https://chatgpt.com/s/t_6abdaf4e6fa0819194d85de31ac2de60 
+After we tried with different prompt examples, we found that certain names were not able to be identified by the model, such as abbreviations for organization. For example, the 'Federal Bureau of Investigation' came up as [ORG] but the 'FBI' did not. For [PER], formally formated names (with both upper case and lower case) were able to be identified by the API, however, if all in lower case, they were not redacted. Moreover, with locations, it only picked up the last section, for example, for 'Denver, CO', the [LOC] only displayed CO instead of the entire city, state location.
